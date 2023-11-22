@@ -1,6 +1,6 @@
-# Frontend - Country Information App
+# Frontend - RestCountries App
 
-This is the frontend part of the Country Information App. It allows users to input a country name and retrieve information about that country using the backend API.
+This is the frontend part of the RestCountries App. It allows users to input a country name and retrieve information about that country using the backend API.
 
 ## Getting Started
 
