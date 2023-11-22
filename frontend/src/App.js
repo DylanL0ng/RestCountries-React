@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import CountryCard from './components/CountryCard';
+import Searchbar from './components/Searchbar';
 
 import './App.css'
-import Searchbar from './components/Searchbar';
 
 const REQUEST_STATES = {
   no_request: 1,
