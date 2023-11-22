@@ -17,10 +17,10 @@ const CountryCard = ({data}) => {
               {data?.region}
             </li>
             <li>
-            <li>
               <span className='label'>Capital: </span>
               {data?.capital}
             </li>
+            <li>
               <span className='label'>Population: </span>
               {numberWithCommas(data?.population)}
             </li>

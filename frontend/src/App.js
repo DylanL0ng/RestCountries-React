@@ -1,64 +1,62 @@
 import React, { useState } from 'react'
 import CountryCard from './components/CountryCard';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+
+import './App.css'
+import Searchbar from './components/Searchbar';
+
+const REQUEST_STATES = {
+  no_request: 1,
+  waiting_request: 2,
+  recieved_request: 3
+}
 
 function App() {
 
-  const STATES = {
-    no_request: 1,
-    waiting_request: 2,
-    recieved_request: 3
-  }
-
+  const [fetchingData, setFetchingData] = useState(REQUEST_STATES.no_request);
+  const [errorMessage, setErrorMessage] = useState(undefined)
   const [countriesData, setCountriesData] = useState([{}]);
-  const [countryName, setCountryName] = useState('');
-  const [fetchingData, setFetchingData] = useState(STATES.no_request);
-  const [responseOkay, setResponseOkay] = useState(undefined);
-
+  
   const handleSubmit = async e => {
     e.preventDefault()
-    setFetchingData(STATES.waiting_request);
-    setResponseOkay(null);
+
+    var search_input = e.target[0].value;
+
+    if (search_input.trim().length === 0) return;
+
+    setFetchingData(REQUEST_STATES.waiting_request);
+    setErrorMessage(undefined);
+
     try {
-      const response = await fetch(`http://localhost:3030/countries/${countryName}`);
+      const response = await fetch(`http://localhost:3030/countries/${search_input}`);
       if (!response.ok)
       {
-        setResponseOkay(false);
-        throw new Error('failed');
+        setErrorMessage("Sorry, no country could be found. Please try again.")
+        return
       }
       
       const data = await response.json();
       
       setCountriesData(data);
-      setFetchingData(STATES.recieved_request);
-      setResponseOkay(true);
+      setFetchingData(REQUEST_STATES.recieved_request);
     } catch (error) {
       console.error('Error fetching data..', error.message)
-      setResponseOkay(false);
+      setErrorMessage("Sorry, no country could be found. Please try again.")
     }
   }
 
   return (
     <>
       <header>
-        <form onSubmit={handleSubmit}>
-          <div className='input--group'>
-            <input type='text' placeholder='Country' value={countryName} onChange={e => setCountryName(e.target.value)} />
-            <button className='icon'>
-              <FontAwesomeIcon icon={faMagnifyingGlass} />
-            </button>
-          </div>
-        </form>
+        <Searchbar onSubmit={handleSubmit} />
       </header>
 
-      {responseOkay === null && fetchingData === STATES.waiting_request && <div className='loading--prompt'><span className='loader'></span>Retrieving data...</div>}
-      {responseOkay === true && fetchingData === STATES.recieved_request && <section className='country--results'>
+      {errorMessage === undefined && fetchingData === REQUEST_STATES.waiting_request && <div className='loading--prompt'><span className='loader'></span>Retrieving data...</div>}
+      {errorMessage === undefined && fetchingData === REQUEST_STATES.recieved_request && <section className='country--results'>
           {countriesData.map((item, idx) => {
             return <CountryCard key={idx} data={item} />
           })}
         </section>}
-      {responseOkay === false && <p>Cannot find Country</p>}
+      {errorMessage && <p className='error--prompt'>{errorMessage}</p>}
     </>
   )
 }

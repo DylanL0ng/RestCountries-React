@@ -27,112 +27,11 @@ body {
   border: 0;
 }
 
-.country--results {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1em;
-}
-
-.input--group {
-  display: inline-flex;
-  align-items: center;
-  min-height: 2em;
-  background-color: var(--box-bg-color);
-  color: var(--text-color);
-
-  margin-block: 0.25em;
-  border-radius: 0.25em;
-
-  width: 100%;
-  max-width: 20em;
-}
-.input--group input {
-  height: 100%;
-  padding-block: 0.5em;
-  padding-inline: 0.25em;
-  padding-left: 0.5em;
-  background: transparent;
-  width: 100%;
-  color: var(--text-color);
-}
-
-.icon {
-  background-color: var(--box-bg-color);
-  color: var(--text-color);
-  
-  width: 4em;
-  height: 2.5em;
-  cursor: pointer;
-}
-.icon:hover {
-  background-color: rgba(255, 255, 255, 0.08);
-}
-
 #root {
   padding-inline: 1em;
   margin-block: 1em;
-}
 
-
-header {
-  width: 100%;
-  text-align: center;
-  margin-bottom: 1em;
-}
-
-form {
-  width: 100%;
-}
-
-.loading--prompt {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.loader {
-  width: 48px;
-  height: 48px;
-  display: block;
-  position: relative;
-
-  margin-inline: auto;
-  margin-bottom: 1em;
-}
-.loader::after,
-.loader::before {
-  content: '';  
-  box-sizing: border-box;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 2px solid #FFF;
-  position: absolute;
-  left: 0;
-  top: 0;
-  animation: animloader 2s linear infinite;
-}
-.loader::after {
-  animation-delay: 1s;
-}
-
-@keyframes animloader {
-  0% {
-    transform: scale(0);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0;
-  }
-}
-
-@media (min-width: 640px) {
-  .country--results {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+  /* Account for the top bar in phones */
+  min-height: calc(100vh - 2em);
+  min-height: calc(100dvh - 2em);
 }

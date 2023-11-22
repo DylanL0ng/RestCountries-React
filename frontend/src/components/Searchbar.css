@@ -1,0 +1,40 @@
+form {
+  width: 100%;
+}
+
+.input--group {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2em;
+  background-color: var(--box-bg-color);
+  color: var(--text-color);
+
+  margin-block: 0.25em;
+  border-radius: 0.25em;
+
+  width: 100%;
+  max-width: 20em;
+}
+
+.input--group input {
+  height: 100%;
+  padding-block: 0.5em;
+  padding-inline: 0.25em;
+  padding-left: 0.5em;
+  background: transparent;
+  width: 100%;
+  color: var(--text-color);
+}
+
+.icon {
+  background-color: var(--box-bg-color);
+  color: var(--text-color);
+
+  width: 4em;
+  height: 2.5em;
+  cursor: pointer;
+}
+
+.icon:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
