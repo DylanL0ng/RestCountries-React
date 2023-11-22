@@ -1,4 +1,4 @@
-# Country Info API
+# Backend - RestCountries App
 
 This is a Node.js and Express application that serves as an API to fetch information about countries using the [REST Countries API](https://restcountries.com/).
 
