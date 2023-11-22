@@ -14,7 +14,7 @@ This is a Node.js and Express application that serves as an API to fetch informa
 1. Clone the repository:
 
   ```bash
-  git clone https://github.com/your-username/your-repository.git
+  git clone https://github.com/DylanL0ng/RestCountries-React.git
   ```
 2. Install dependencies:
 
