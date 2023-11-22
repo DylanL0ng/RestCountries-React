@@ -12,15 +12,14 @@ This is the frontend part of the Country Information App. It allows users to inp
 ### Installation
 
 1. Clone the repository:
-
   ```bash
   git clone https://github.com/DylanL0ng/RestCountries-React.git
   ```
 
 2. Navigate to the frontend directory:
-   ```bash
-   cd frontend
-   ```
+  ```bash
+  cd frontend
+  ```
 
 3. Install dependencies:
   ```bash
@@ -41,22 +40,6 @@ Start the frontend:
   ```
 
 The application will be available at `http://localhost:3000`.
-
-## Folder Structure
-/frontend
-|-- /src
-|   |-- /components
-|       |-- CountryCard.css
-|       |-- CountryCard.js
-|       |-- Searchbar.css
-|       |-- Searchbar.js
-|   |-- App.js
-|   |-- App.css
-|   |-- ...
-
-**`/src/components`**: Contains React components for the application.
-**`App.js`**: Main component that handles user input, fetches data from the backend, and displays results.
-**`App.css`**: Styles for the main component.
 
 ## Components
 
