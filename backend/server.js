@@ -1,16 +1,12 @@
 // Request modules
-const express = require('express');
-const dotenv = require('dotenv');
-const axios = require('axios');
+const express = require('express')
+const dotenv = require('dotenv')
+const axios = require('axios')
+const cors = require('cors')
 const app = express();
 
-// Setup cors
-const cors = require('cors');
-
+// Setup and use CORS
 app.use(cors());
-
-// Setup .ENV support
-dotenv.config();
 
 app.get('/countries/:country', async (req, res) => {
     let { country } = req.params;
@@ -18,18 +14,26 @@ app.get('/countries/:country', async (req, res) => {
     // Remove any whitespace from the param
     country = country.trim()
 
-    // If param isn't passed through then cancel out
-    if (!country) res.status(500).json({error: "Invalid input"})
+    // If param isn't passed through or its passed through
+    // with invalid symbols, such as numbers then cancel out
+    // and respond with an error message.
+    if (!country || !/^[a-zA-Z]+$/.test(country))
+        return res.status(400).json({ error: "Invalid or missing country parameter. Please provide a valid country name." })
 
     // Attempt to query for the country with the API
     try {
-        const response = await axios.get(`https://restcountries.com/v3.1/name/${country}`)
+        // Encode the param as a valid URI component
+        // This will prevent and possible injection attacks.
+        const response = await axios.get(`https://restcountries.com/v3.1/name/${encodeURIComponent(country)}`)
         res.json(response.data);
     } catch (error) {
-        console.log('Error fetching data')
-        res.status(500).json({error: "failed to fetch data"})
+        console.error('Error fetching data', error.message);
+        res.status(500).json({ error: `Failed to fetch data: ${error.message}` });
     }
 })
+
+// Setup .ENV support
+dotenv.config();
 
 // Listen on port
 app.listen(process.env.EXPRESS_PORT, () => console.log(`Server listening on port ${process.env.EXPRESS_PORT}`))
