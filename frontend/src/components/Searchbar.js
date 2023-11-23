@@ -10,8 +10,8 @@ export default function Searchbar({ onSubmit }) {
   return (
     <form onSubmit={onSubmit}>
         <div className='input--group'>
-        <input type='text' placeholder='Country' />
-        <button className='icon'>
+        <input data-testid={`cypress-searchbar`} type='text' placeholder='Country' />
+        <button data-testid={`cypress-searchbutton`} className='icon'>
             <FontAwesomeIcon icon={faMagnifyingGlass} />
         </button>
         </div>

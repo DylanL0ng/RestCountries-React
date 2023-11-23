@@ -46,17 +46,40 @@ function App() {
 
   return (
     <>
-      <header>
+      <header data-testid="cypress-header">
         <Searchbar onSubmit={handleSubmit} />
       </header>
 
-      {errorMessage === undefined && fetchingData === REQUEST_STATES.waiting_request && <div className='loading--prompt'><span className='loader'></span>Retrieving data...</div>}
-      {errorMessage === undefined && fetchingData === REQUEST_STATES.recieved_request && <section className='country--results'>
-          {countriesData.map((item, idx) => {
-            return <CountryCard key={idx} data={item} />
-          })}
-        </section>}
-      {errorMessage && <p className='error--prompt'>{errorMessage}</p>}
+      {/* 
+        If there's no error message present, and data is being
+        fetched then display a loading prompt.
+      */}
+      {
+        errorMessage === undefined &&
+        fetchingData === REQUEST_STATES.waiting_request &&
+        <div className='loading--prompt'>
+          <span className='loader'></span>
+          Retrieving data...
+        </div>
+      }
+      
+      {/* 
+        If data has been retrieved and there's no error present
+        then map through and display each country with relevant
+        country data
+      */}
+      {
+        errorMessage === undefined &&
+        fetchingData === REQUEST_STATES.recieved_request &&
+        <section data-testid={'cypress-countryresults'} className='country--results'>
+          {countriesData?.map((data, key) => <CountryCard key={key} index={key} data={data} /> )}
+        </section>
+      }
+
+      {/* 
+        If theres an error, show the error prompt
+      */}
+      {errorMessage && <p data-testid={'cypress-errorprompt'} className='error--prompt'>{errorMessage}</p>}
     </>
   )
 }
