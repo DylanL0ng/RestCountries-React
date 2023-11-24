@@ -21,9 +21,9 @@ This is a simple web application that allows users to input a country name and r
 Check out the [live demo](https://rest-countries-react-eta.vercel.app/) to see the RestCountries App in action.
 
 
-## Setup Guide
+# Setup Guide
 
-# Backend - RestCountries App
+## Backend - RestCountries App
 
 This is a Node.js and Express application that serves as an API to fetch information about countries using the [REST Countries API](https://restcountries.com/).
 
