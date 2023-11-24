@@ -132,5 +132,3 @@ The application will be available at `http://localhost:3000`.
 - Population
 ### `Searchbar.js`
 - Accepts user input for a country name and triggers the data retrieval process.
-
-Feel free to explore, contribute, and enhance the RestCountries App!
