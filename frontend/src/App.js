@@ -25,7 +25,6 @@ function App() {
 
     setFetchingData(REQUEST_STATES.waiting_request);
     setErrorMessage(undefined);
-
     try {
       const response = await fetch(`http://${process.env.REACT_APP_EXPRESS_IP}:${process.env.REACT_APP_EXPRESS_PORT}/countries/${search_input}`);
       if (!response.ok)
@@ -33,7 +32,7 @@ function App() {
         setErrorMessage("Sorry, no country could be found. Please try again.")
         return
       }
-      
+            
       const data = await response.json();
       
       setCountriesData(data);
