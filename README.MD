@@ -1,6 +1,6 @@
 # RestCountries App
 
-Welcome to the RestCountries App, a web application that enables users to input a country name and retrieve detailed information about that specific country. The project is neatly organized into backend and frontend components.
+Welcome to the RestCountries App, a web application that enables users to input a country name and retrieve detailed information about that specific country. The project is neatly organised into backend and frontend components.
 ## Project Structure
 
 ```plaintext
